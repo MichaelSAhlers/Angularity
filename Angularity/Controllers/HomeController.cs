@@ -21,9 +21,5 @@ namespace Angularity.Controllers {
 
             return View();
         }
-
-        public ActionResult UserDetails() {
-            return View();
-        }
     }
 }

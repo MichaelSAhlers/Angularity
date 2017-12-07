@@ -89,7 +89,7 @@
 
 
     // $timeout = setTimeout, $interval = setInterval
-    var MainController = function ($scope, $http) {//, $interval) {
+    var MainController = function ($scope, $http, $interval) {
 
         var onUserComplete = function (response) {
             $scope.user = response.data;
@@ -103,18 +103,18 @@
 
         var onError = function (reason) {
             $scope.error = 'Could not fetch the user';
-        }
+        };
 
-        //var decrementCountdown = function () {
-        //    $scope.countdown -= 1;
-        //    if ($scope.countdown < 1) {
-        //        $scope.search($scope.username);
-        //    };
-        //};
+        var decrementCountdown = function () {
+            $scope.countdown -= 1;
+            if ($scope.countdown < 1) {
+                $scope.search($scope.username);
+            };
+        };
 
-        //var startCountdown = function () {
-        //    $interval(decrementCountdown, 1000, $scope.countdown); // Decrement every 1 second 5 times
-        //};
+        var startCountdown = function () {
+            $interval(decrementCountdown, 1000, $scope.countdown); // Decrement every 1 second 5 times
+        };
 
         $scope.search = function (username) {
             $http.get('https://api.github.com/users/' + username)
@@ -127,7 +127,7 @@
         // Control Sort Order of Repos on Page (+/- = ASC/DESC)
         $scope.repoSortOrder = '-stargazers_count';
         $scope.countdown = 5;
-        //startCountdown();
+        startCountdown();
     };
 
     app.controller('MainController', MainController);

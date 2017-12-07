@@ -12,5 +12,7 @@
     @*<div class="alert alert-danger" style="text-align: center;">*@
     {{error}}
     @*</div>*@
-    <div ng-include="'Home/UserDetails'" ng-show="user"></div> @* Don't forget about your Controller/Action! *@
+    <div ng-show="user">
+        @Html.Partial("_UserDetails")
+    </div>
 </div>
