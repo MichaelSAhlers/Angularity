@@ -1,0 +1,40 @@
+﻿<div>
+    <div>
+        @*User for GitHub Example; person for basic person example (in app.js)*@
+        Name: {{user.name}}
+    </div>
+    <div>
+        Location: {{user.location}}
+    </div>
+    <div>
+        Short Bio: {{user.bio}}
+    </div>
+    <div>
+        <img ng-src="{{user.avatar_url}}" title="{{user.name}}" />
+        <br />Order:
+        <select ng-model="repoSortOrder">
+            <option value="+name">Name</option>
+            <option value="-stargazers_count">Stars</option>
+            <option value="+language">Language</option>
+        </select>
+    </div>
+</div>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Stars</th>
+                <th>Language</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="repo in repos | orderBy:repoSortOrder">
+                @* Order By can put +/- in front of field name to specify ASC/DESC *@
+                <td>{{repo.name}}</td>
+                <td>{{repo.stargazers_count | number}}</td>@* | is a pipe to a filter, including JSON, currency, etc. Format: expression | filterName:parameter *@
+                <td>{{repo.language}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
